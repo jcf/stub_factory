@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe StubFactory do
-  describe 'OpenStruct' do
+  describe 'String' do
     factory(String)
 
     it 'should define a String instance' do
