@@ -6,6 +6,15 @@ push it to Github.
 Rspec provides `subject` which will do most of what this code does. You
 probably want to use that instead.
 
+## Installation
+
+    gem install stub_factory
+
+Or you can \[fork and\] clone the repo and install it using Jeweler's `rake
+install` task.
+
+## Usage
+
 In your spec_helper
 
     require 'stub_factory'
