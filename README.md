@@ -45,6 +45,8 @@ Check out
 [stub_factory_spec.rb](http://github.com/jcf/stub_factory/blob/master/spec/stub_factory_spec.rb)
 to see `StubFactory` in use.
 
+## Alternative Usage
+
 If you already use FactoryGirl, as I do on a lot of my projects you may find the
 following method useful as it allows you to setup similar persistent instances
 of your Factories. Simple paste it in to your `spec_helper.rb`
