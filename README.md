@@ -72,6 +72,19 @@ of your Factories. Simple paste it in to your `spec_helper.rb`
       end
     end
 
+The difference being you pass the factory name to the `factory` method instead of
+a class and FactoryGirl does everything else.
+
+    factory(:post)
+
+    describe 'something' do
+      it 'has attributes' do
+        post(:published_at => Time.now)
+      end
+    end
+
+    # calls Factory(:post, :published_at => Time.now)
+
 ## Note on Patches/Pull Requests
 
 * Fork the project.
