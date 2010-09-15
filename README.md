@@ -45,6 +45,31 @@ Check out
 [stub_factory_spec.rb](http://github.com/jcf/stub_factory/blob/master/spec/stub_factory_spec.rb)
 to see `StubFactory` in use.
 
+If you already use FactoryGirl, as I do on a lot of my projects you may find the
+following method useful as it allows you to setup similar persistent instances
+of your Factories. Simple paste it in to your `spec_helper.rb`
+
+    def factory(factory_name, options = {})
+      method_name = (options[:method_name] || factory_name).to_s.to_sym
+
+      define_method(method_name) do |*args|
+        var_name = "@#{method_name}"
+        value    = instance_variable_get(var_name)
+        return value if value
+
+        attributes = args.shift || {}
+        stubs      = args.shift || {}
+
+        super_mock = Proc.new { |factory_name, attributes, stubs|
+          Factory(factory_name, attributes).tap do |super_mock|
+            super_mock.stub!(stubs)
+          end
+        }
+
+        instance_variable_set(var_name, super_mock.call(factory_name, attributes, stubs))
+      end
+    end
+
 ## Note on Patches/Pull Requests
 
 * Fork the project.
